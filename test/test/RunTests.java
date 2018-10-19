@@ -1,63 +1,31 @@
 package test;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+
+import test.task1.HomeApplianceTest;
+import test.task1.TVTest;
+import test.task2.RadioTest;
 
 /**
  * This class executes all tests and prints out the report.
  * 
  */
 public class RunTests {
-	
+
 	public static void main(String[] args) {
-		runAllTests();
+		runTestsForClass(HomeApplianceTest.class);
+		runTestsForClass(TVTest.class);
+		runTestsForClass(RadioTest.class);
 	}
 
-	/**
-	 * Runs all tests classes (supposes they have a suffix "Test") from the base
-	 * package and its sub-packages. The default value for the basePackage is
-	 * the package where this class is located.
-	 * 
-	 */
-	public static void runAllTests() {
-		try {
-			Class<?>[] classes = TestUtil.getClasses(RunTests.class.getPackage().getName());
-			
-			List<Class<?>> testClasses = Arrays.asList(classes).stream()
-				.filter(c -> c.getName().endsWith("Test"))
-				.collect(Collectors.toList());
-			
-			// order classes by the value in annotation TestOrder (if present)
-			testClasses.sort((c1, c2) -> {
-				TestOrder annC1 = c1.getAnnotation(TestOrder.class);
-				if (annC1 != null) {
-					TestOrder annC2 = c2.getAnnotation(TestOrder.class);
-					if (annC2 != null) {
-						return ((Integer) annC1.value()).compareTo(annC2.value());
-					}
-					return 0;
-				} else {
-					return 1;
-				}
-			});
-			
-			for (Class<?> clazz : testClasses) {
-				runTestsForClass(clazz);
-			}
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	/**
 	 * Runs all tests declared in the class c.
 	 * 
@@ -72,6 +40,7 @@ public class RunTests {
 		int failureCount = r.getFailureCount();
 		int successfulCount = totalCount - failureCount;
 		String className = c.getName().substring(0, c.getName().length() - 4); // remove last 4 characters "Test"
+		className = className.substring(5);		// remove package "test." from the name
 
 		if (r.wasSuccessful()) {
 			System.out.println("------------------------------------------------");
@@ -127,8 +96,7 @@ public class RunTests {
 						}
 					}
 
-					// if for a given TestTypes instance there are no tests, do
-					// not add it
+					// if for a given TestTypes instance there are no tests, do not add it
 					if (!methodStatsMap.isEmpty())
 						testTypeMethodMap.put(testType, methodStatsMap);
 				}
@@ -143,8 +111,7 @@ public class RunTests {
 						for (String methodName : methodsMap.keySet()) {
 							int[] methodStats = methodsMap.get(methodName);
 
-							System.err.printf("\t %-20s %s/%s %s%n", methodName, methodStats[0],
-									methodStats[0] + methodStats[1], methodStats[1] == 0 ? "OK" : "Neuspesno");
+							System.err.printf("\t %-20s %s%n", methodName, methodStats[1] == 0 ? "OK" : "Neuspešno: " + methodStats[1]);
 						}
 						System.err.println();
 					}

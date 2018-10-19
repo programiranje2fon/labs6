@@ -13,10 +13,8 @@ import org.junit.Test;
 
 import task1.HomeAppliance;
 import task2.Radio;
-import test.TestOrder;
 import test.TestUtil;
 
-@TestOrder(3)
 public class RadioTest {
 
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import task1.HomeAppliance;
-import test.TestOrder;
 import test.TestUtil;
 
-@TestOrder(1)
 public class HomeApplianceTest {
 
 	HomeAppliance instance;

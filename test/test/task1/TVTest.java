@@ -13,10 +13,8 @@ import org.junit.Test;
 
 import task1.HomeAppliance;
 import task1.TV;
-import test.TestOrder;
 import test.TestUtil;
 
-@TestOrder(2)
 public class TVTest {
 	
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
