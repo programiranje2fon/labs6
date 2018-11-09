@@ -173,8 +173,6 @@ public class RadioTest {
 	
 	@Test
 	public void metoda_toString() {
-		Radio r1 = new Radio(false, "Audio sistem Sony MHC", 87.5);
-		
-		assertEquals("Metoda toString ne vraca String u odgovarajucem formatu", "RADIO FREQUENCY: 87.5 Mhz", r1.toString());
+		assertTrue("Metoda toString ne vraca vrednost atributa frekvencija", instance.toString().contains("96.2"));
 	}
 }

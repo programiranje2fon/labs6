@@ -168,9 +168,9 @@ public class TVTest {
 	
 	@Test
 	public void metoda_toString() {
-		TV t1 = new TV(false, "LG OLED65", 15);
-		
-		assertEquals("Metoda toString ne vraca String u odgovarajucem formatu", "BRAND AND MODEL: LG OLED65 TURNED ON: false PROGRAM: 15", t1.toString());
+		assertTrue("Metoda toString ne vraca vrednost atributa ukljucen", instance.toString().contains("true"));
+		assertTrue("Metoda toString ne vraca vrednost atributa markaIModel", instance.toString().contains("Samsung UE40"));
+		assertTrue("Metoda toString ne vraca vrednost atributa program", instance.toString().contains("1"));
 	}
 	
 }

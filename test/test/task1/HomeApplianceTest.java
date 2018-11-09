@@ -14,7 +14,7 @@ import test.TestUtil;
 
 public class HomeApplianceTest {
 
-	HomeAppliance instance;
+	private HomeAppliance instance;
 
 	@Before
 	public void setUp() throws Exception {
@@ -81,7 +81,8 @@ public class HomeApplianceTest {
 	
 	@Test
 	public void metoda_toString() {
-		assertEquals("Metoda toString ne vraca String u odgovarajucem formatu", "BRAND AND MODEL: Laptop Acer A315 TURNED ON: true", instance.toString());
+		assertTrue("Metoda toString ne vraca vrednost atributa ukljucen", instance.toString().contains("true"));
+		assertTrue("Metoda toString ne vraca vrednost atributa markaIModel", instance.toString().contains("Laptop Acer A315"));
 	}
 	
 	@Test
