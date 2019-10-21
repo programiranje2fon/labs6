@@ -27,83 +27,83 @@ public class HomeApplianceTest {
 	}
 	
 	@Test
-	public void atribut_ukljucen() {
-		assertTrue("U klasi nije definisan atribut ukljucen", TestUtil.doesFieldExist(HomeAppliance.class, "turnedOn"));
+	public void attribute_turnedOn() {
+		assertTrue("There is no attribute turnedOn declared", TestUtil.doesFieldExist(HomeAppliance.class, "turnedOn"));
 	}
 	
 	@Test
-	public void atribut_ukljucen_vidljivost() {
-		assertTrue("Atribut ukljucen nije privatan", TestUtil.hasFieldModifier(HomeAppliance.class, "turnedOn", Modifier.PRIVATE));
+	public void attribute_turnedOn_visibility() {
+		assertTrue("Attribute turnedOn is not private", TestUtil.hasFieldModifier(HomeAppliance.class, "turnedOn", Modifier.PRIVATE));
 	}
 	
 	@Test
-	public void atribut_markaIModel() {
-		assertTrue("U klasi nije definisan atribut markaIModel", TestUtil.doesFieldExist(HomeAppliance.class, "brandAndModel"));
+	public void attribute_brandAndModel() {
+		assertTrue("There is no attribute brandAndModel declared", TestUtil.doesFieldExist(HomeAppliance.class, "brandAndModel"));
 	}
 	
 	@Test
-	public void atribut_markaIModel_vidljivost() {
-		assertTrue("Atribut markaIModel nije privatan", TestUtil.hasFieldModifier(HomeAppliance.class, "brandAndModel", Modifier.PRIVATE));
+	public void attribute_brandAndModel_visibility() {
+		assertTrue("Attribute brandAndModel is not private", TestUtil.hasFieldModifier(HomeAppliance.class, "brandAndModel", Modifier.PRIVATE));
 	}
 	
 	@Test
-	public void konstruktor_KucniAparat_LaptopAcerA315() {
+	public void constructor_HomeAppliance_LaptopAcerA315() {
 		// testing with two different instances in case value of some of the attributes is hard-coded
 		HomeAppliance k1 = new HomeAppliance(true, "Laptop Acer A315");
 		boolean ukljucenValue1 = (boolean) TestUtil.getFieldValue(k1, "turnedOn");
 		String markaIModelValue1 = (String) TestUtil.getFieldValue(k1, "brandAndModel");
 		
-		assertEquals("Za prosledjeni prvi argument \"true\", atribut ukljucen ima vrednost "+ukljucenValue1, true, ukljucenValue1);
-		assertEquals("Za prosledjeni drugi argument \"Laptop Acer A315\", atribut markaIModel ima vrednost \""+markaIModelValue1+"\"", "Laptop Acer A315", markaIModelValue1);
+		assertEquals("When the first argument is \"true\", the attribute turnedOn does not contain this value", true, ukljucenValue1);
+		assertEquals("When the second argument is \"Laptop Acer A315\", the attribute brandAndModel does not contain this value", "Laptop Acer A315", markaIModelValue1);
 	}
 	
 	@Test
-	public void konstruktor_KucniAparat_CanonDSLR() {
+	public void constructor_HomeAppliance_CanonDSLR() {
 		HomeAppliance k2 = new HomeAppliance(false, "Canon DSLR EOS 5D");
 		boolean ukljucenValue2 = (boolean) TestUtil.getFieldValue(k2, "turnedOn");
 		String markaIModelValue2 = (String) TestUtil.getFieldValue(k2, "brandAndModel");
 		
-		assertEquals("Za prosledjeni prvi argument \"true\", atribut ukljucen ima vrednost "+ukljucenValue2, false, ukljucenValue2);
-		assertEquals("Za prosledjeni drugi argument \"Canon DSLR EOS 5D\", atribut markaIModel ima vrednost \""+markaIModelValue2+"\"", "Canon DSLR EOS 5D", markaIModelValue2);
+		assertEquals("When the first argument is \"true\", the attribute turnedOn does not contain this value", false, ukljucenValue2);
+		assertEquals("When the second argument is \"Canon DSLR EOS 5D\", the attribute brandAndModel does not contain this value", "Canon DSLR EOS 5D", markaIModelValue2);
 	}
 	
 	@Test
-	public void metoda_ukljuciIskljuci() {
+	public void method_turnOnOrOff() {
 		boolean ukljucenValue1 = (boolean) TestUtil.getFieldValue(instance, "turnedOn");
 		instance.turnOnOrOff();
 		boolean ukljucenValue2 = (boolean) TestUtil.getFieldValue(instance, "turnedOn");
-		assertEquals("Nakon poziva metode ukljuciIskljuci, vrednost atributa ukljucen se nije promenila sa \""+ukljucenValue1+"\" na \""+!ukljucenValue1+"\"", !ukljucenValue1, ukljucenValue2);
+		assertEquals("After calling the method turnOnOrOff, the value of the attribute turnedOn did not change", !ukljucenValue1, ukljucenValue2);
 		
 		instance.turnOnOrOff();
 		boolean ukljucenValue3 = (boolean) TestUtil.getFieldValue(instance, "turnedOn");
-		assertEquals("Nakon poziva metode ukljuciIskljuci, vrednost atributa ukljucen se nije promenila sa \""+ukljucenValue2+"\" na \""+!ukljucenValue2+"\"", !ukljucenValue2, ukljucenValue3);
+		assertEquals("After calling the method turnOnOrOff twice, the value of the attribute turnedOn changed", !ukljucenValue2, ukljucenValue3);
 	}
 	
 	@Test
-	public void metoda_toString() {
-		assertTrue("Metoda toString ne vraca vrednost atributa ukljucen", instance.toString().contains("true"));
-		assertTrue("Metoda toString ne vraca vrednost atributa markaIModel", instance.toString().contains("Laptop Acer A315"));
+	public void method_toString() {
+		assertTrue("The return value does not contain the value of the attribute turnedOn", instance.toString().contains("true"));
+		assertTrue("The return value does not contain the value of the attribute brandAndModel", instance.toString().contains("Laptop Acer A315"));
 	}
 	
 	@Test
-	public void metoda_equals_pogresanTip() {
-		assertEquals("Metoda equals ne vraca false ako je prosledjen objekat koji nije KucniAparat", false, instance.equals(new Object()));
+	public void method_equals_wrongType() {
+		assertEquals("The equals method does not return false when the argument is of a type other than HomeAppliance", false, instance.equals(new Object()));
 	}
 	
 	@Test
-	public void metoda_equals_isti() {
+	public void method_equals_same() {
 		// testing with two different instances in case value of the the attribute markaIModel is hard-coded
 		HomeAppliance k1 = new HomeAppliance(true, "Laptop Acer A315");
 		HomeAppliance k2 = new HomeAppliance(true, "Laptop Acer A315");
-		assertEquals("Metoda equals ne vraca true kada je pozvana nad kucnim aparatom sa markom i modelom \"Laptop Acer A315\", a prosledjen je kucni aparat sa markom i modelom \"Laptop Acer A315\"", true, k1.equals(k2));
+		assertEquals("The method should return true when the argument passed is an object with the same values for both attributes turnedOn and brandAndModel", true, k1.equals(k2));
 	}
 	
 	@Test
-	public void metoda_equals_razliciti() {
+	public void method_equals_different() {
 		HomeAppliance k1 = new HomeAppliance(true, "Laptop Acer A315");
 		HomeAppliance k2 = new HomeAppliance(true, "LG OLED65");
 		
-		assertEquals("Metoda equals ne vraca false kada je pozvana nad kucnim aparatom sa markom i modelom \"Laptop Acer A315\", a prosledjen je kucni aparat sa markom i modelom \"LG OLED65\"", false, k1.equals(k2));
+		assertEquals("he method should return false when the argument passed is an object with different values for any of the attributes turnedOn and brandAndModel", false, k1.equals(k2));
 	}
 	
 }
