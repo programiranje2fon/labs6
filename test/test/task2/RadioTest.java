@@ -85,7 +85,7 @@ public class RadioTest {
 	public void constructor_Radio_frequency874() {
 		Radio r1 = new Radio(true, "Audio sistem Sony MHC", 87.4);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		double frekvencijaValue1 = (double) TestUtil.getFieldValue(r1, "frequency");
 		assertEquals("When the third argument is \"87.4\", the attribute frequency has the wrong value", 87.5, frekvencijaValue1, 0.001);
@@ -95,7 +95,7 @@ public class RadioTest {
 	public void constructor_Radio_frequency0() {
 		Radio r1 = new Radio(true, "Audio sistem Sony MHC", 0);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		double frekvencijaValue1 = (double) TestUtil.getFieldValue(r1, "frequency");
 		assertEquals("When the third argument is \"0\", the attribute frequency has the wrong value", 87.5, frekvencijaValue1, 0.001);
@@ -105,7 +105,7 @@ public class RadioTest {
 	public void constructor_Radio_frequency108() {
 		Radio r1 = new Radio(true, "Audio sistem Sony MHC", 108);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		double frekvencijaValue1 = (double) TestUtil.getFieldValue(r1, "frequency");
 		assertEquals("When the third argument is \"108\", the attribute frequency has the wrong value", 87.5, frekvencijaValue1, 0.001);

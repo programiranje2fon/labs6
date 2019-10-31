@@ -85,7 +85,7 @@ public class TVTest {
 	public void constructor_TV_program0() {
 		TV t1 = new TV(false, "LG OLED65", 0);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		int programValue1 = (int) TestUtil.getFieldValue(t1, "program");
 		assertEquals("When the third argument is \"0\", the attribute program has the wrong value", 1, programValue1);
@@ -95,7 +95,7 @@ public class TVTest {
 	public void constructor_TV_programMinus1000() {
 		TV t1 = new TV(false, "LG OLED65", -1000);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		int programValue1 = (int) TestUtil.getFieldValue(t1, "program");
 		assertEquals("When the third argument is \"-1000\", the attribute program has the wrong value", 1, programValue1);
@@ -105,7 +105,7 @@ public class TVTest {
 	public void constructor_TV_program41() {
 		TV t1 = new TV(false, "LG OLED65", 41);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		int programValue1 = (int) TestUtil.getFieldValue(t1, "program");
 		assertEquals("When the third argument is \"41\", the attribute program has the wrong value", 1, programValue1);
@@ -115,7 +115,7 @@ public class TVTest {
 	public void constructor_TV_program1000() {
 		TV t1 = new TV(false, "LG OLED65", 1000);
 
-		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().trim().equalsIgnoreCase("ERROR"));
+		assertTrue("For invalid arguments, the method does not print ERROR to the console", outContent.toString().toLowerCase().contains("error"));
 		
 		int programValue1 = (int) TestUtil.getFieldValue(t1, "program");
 		assertEquals("When the third argument is \"1000\", the attribute program has the wrong value", 1, programValue1);
@@ -169,7 +169,7 @@ public class TVTest {
 	@Test
 	public void method_toString() {
 		assertTrue("The return value does not contain the value of the attribute turnedOn", instance.toString().contains("true"));
-		assertTrue("The return value does not contain the value of the attribute brandAndModel", instance.toString().contains("Samsung UE40"));
+		assertTrue("The return value does not contain the value of the attribute brandAndModel", instance.toString().toLowerCase().contains("Samsung UE40"));
 		assertTrue("The return value does not contain the value of the attribute program", instance.toString().contains("1"));
 	}
 	
