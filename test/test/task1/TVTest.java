@@ -168,9 +168,10 @@ public class TVTest {
 	
 	@Test
 	public void method_toString() {
-		assertTrue("The return value does not contain the value of the attribute turnedOn", instance.toString().contains("true"));
-		assertTrue("The return value does not contain the value of the attribute brandAndModel", instance.toString().toLowerCase().contains("Samsung UE40"));
-		assertTrue("The return value does not contain the value of the attribute program", instance.toString().contains("1"));
+		String toString = instance.toString();
+		assertTrue("The return value does not contain the value of the attribute turnedOn", toString.contains("true"));
+		assertTrue("The return value does not contain the value of the attribute brandAndModel", toString.toLowerCase().contains("samsung ue40"));
+		assertTrue("The return value does not contain the value of the attribute program", toString.contains("1"));
 	}
 	
 }
